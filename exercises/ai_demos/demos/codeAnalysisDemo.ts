@@ -10,16 +10,16 @@ export class CodeAnalysisDemo extends BaseDemo {
     }
 
     async run() {
-        console.log('📊 Demo 1: Analiza i Poprawa Kodu');
+        console.log('\n📊 Demo 1: Code Analysis and Improvement');
         await this.cleanOutput();
 
-        // Wczytaj kod do analizy
+        // Load code for analysis
         const sampleCode = await fs.readFile(
             path.join(__dirname, '../inputs/code-samples/user-service.ts'),
             'utf-8'
         );
 
-        // Generuj analizę kodu
+        // Generate code analysis
         const analysisCompletion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
@@ -29,58 +29,58 @@ export class CodeAnalysisDemo extends BaseDemo {
                 },
                 {
                     role: "user",
-                    content: `Przeanalizuj ten kod TypeScript i zaproponuj ulepszenia:
-                    1. Typowanie i interfejsy
-                    2. Obsługa błędów i walidacja
-                    3. Bezpieczeństwo
-                    4. Najlepsze praktyki
-                    5. Testy jednostkowe
+                    content: `Analyze this TypeScript code and suggest improvements:
+                    1. Types and interfaces
+                    2. Error handling and validation
+                    3. Security
+                    4. Best practices
+                    5. Unit tests
                     
-                    Kod do analizy:\n${sampleCode}
+                    Code to analyze:\n${sampleCode}
                     
-                    Format odpowiedzi:
-                    1. Krótkie podsumowanie problemów
-                    2. Lista konkretnych problemów z wyjaśnieniem
-                    3. Sugerowane rozwiązania dla każdego problemu`
+                    Response format:
+                    1. Brief summary of issues
+                    2. List of specific issues with explanation
+                    3. Suggested solutions for each issue`
                 }
             ],
             temperature: 0.3
         });
 
-        // Zapisz wyniki analizy
+        // Save analysis results
         await this.saveOutput('code-review.md', analysisCompletion.choices[0].message.content || '');
 
-        // Generuj poprawiony kod
+        // Generate improved code
         const improvedCodeCompletion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 {
                     role: "system",
                     content: `${SystemPrompts.CODE_REVIEWER}
-                    Wygeneruj poprawioną wersję kodu TypeScript, która rozwiązuje wszystkie problemy.
-                    Uwzględnij:
-                    - Interfejsy i typy dla wszystkich struktur danych
-                    - Walidację danych wejściowych
-                    - Prawidłową obsługę błędów z własną hierarchią wyjątków
-                    - Zabezpieczenia przed typowymi problemami bezpieczeństwa
-                    - Najlepsze praktyki TypeScript i wzorce projektowe
+                    Generate improved TypeScript code that solves all issues.
+                    Include:
+                    - Interfaces and types for all data structures
+                    - Input data validation
+                    - Proper error handling with custom error hierarchy
+                    - Protection against common security issues
+                    - TypeScript best practices and design patterns
                     
-                    Zwróć TYLKO kod, bez komentarzy i wyjaśnień.
-                    Kod powinien być kompletny i gotowy do użycia.`
+                    Return ONLY code, without comments or explanations.
+                    Code should be complete and ready to use.`
                 },
                 {
                     role: "user",
-                    content: `Popraw ten kod:\n${sampleCode}`
+                    content: `Improve this code:\n${sampleCode}`
                 }
             ],
             temperature: 0.2
         });
 
-        // Zapisz poprawiony kod
+        // Save improved code
         await this.saveOutput('improved-code.ts', improvedCodeCompletion.choices[0].message.content || '');
 
-        console.log('\n✅ Wygenerowano:');
-        console.log('1. Analizę kodu (code-review.md)');
-        console.log('2. Poprawioną wersję kodu (improved-code.ts)');
+        console.log('\n✅ Generated:');
+        console.log('1. Code analysis (code-review.md)');
+        console.log('2. Improved code version (improved-code.ts)');
     }
 } 

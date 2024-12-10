@@ -40,24 +40,24 @@ export class JsonSplitter {
     }
 
     public async splitAndSave(jsonData: JsonData): Promise<string[]> {
-        // Wyczyść poprzednie chunki
+        // Clean previous chunks
         await this.cleanDirectory();
 
-        // Utwórz katalogi jeśli nie istnieją
+        // Create directories if they don't exist
         await fs.mkdir(this.chunksDir, { recursive: true });
 
-        // Zapisz oryginalny plik
+        // Save original file
         const originalPath = path.join(this.taskDir, 'original.json');
         await fs.writeFile(originalPath, JSON.stringify(jsonData, null, 2));
-        console.log('💾 Original file saved to:', originalPath);
+        console.log('💾 Original file saved');
 
-        // Podziel dane na chunki
+        // Split data into chunks
         const chunks: TestItem[][] = [];
         for (let i = 0; i < jsonData['test-data'].length; i += this.chunkSize) {
             chunks.push(jsonData['test-data'].slice(i, i + this.chunkSize));
         }
 
-        // Zapisz chunki i zbierz względne ścieżki
+        // Save chunks and collect paths
         const chunkPaths: string[] = [];
         for (let i = 0; i < chunks.length; i++) {
             const chunkPath = path.join('chunks', `chunk_${i + 1}.json`);
@@ -78,12 +78,11 @@ export class JsonSplitter {
             };
             
             await fs.writeFile(fullChunkPath, JSON.stringify(chunkData, null, 2));
-            // Dodaj względną ścieżkę do listy
             chunkPaths.push(chunkPath);
             console.log(`📁 Chunk ${i + 1}/${chunks.length} saved`);
         }
 
-        // Zapisz metadane
+        // Save metadata
         const metaPath = path.join(this.taskDir, 'metadata.json');
         const metadata = {
             timestamp: new Date().toISOString(),
