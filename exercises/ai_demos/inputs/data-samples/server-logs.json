@@ -4,27 +4,123 @@
   "copyright": "Demo 2024",
   "test-data": [
     {
-      "question": "Server Error",
-      "answer": "Database connection timeout",
+      "question": "Database Connection Error",
+      "answer": "Connection pool exhausted",
       "test": {
-        "q": "2024-03-20T10:15:00Z - ERROR - Database connection failed after 30s",
-        "a": "Connection timeout during peak hours"
+        "q": "2024-03-20T10:15:00Z - ERROR - Database connection failed: max_connections reached (current: 100/100)",
+        "a": "High traffic caused connection pool exhaustion during peak hours"
       }
     },
     {
-      "question": "Authentication Failure",
-      "answer": "Invalid credentials",
+      "question": "Failed Login Attempt",
+      "answer": "Multiple failed attempts from same IP",
       "test": {
-        "q": "2024-03-20T10:16:00Z - WARN - Failed login attempt from IP 192.168.1.100",
-        "a": "Multiple failed attempts detected"
+        "q": "2024-03-20T10:16:00Z - WARN - Multiple failed login attempts detected from IP 192.168.1.100 (attempts: 5)",
+        "a": "Potential brute force attack detected"
       }
     },
     {
-      "question": "Order Processing",
-      "answer": "Payment verification failed",
+      "question": "Payment Processing Error",
+      "answer": "Gateway timeout during checkout",
       "test": {
-        "q": "2024-03-20T10:17:00Z - ERROR - Payment gateway timeout for order #12345",
-        "a": "Transaction rollback initiated"
+        "q": "2024-03-20T10:17:00Z - ERROR - Payment gateway timeout for order #12345 (amount: $299.99)",
+        "a": "Payment provider API experiencing high latency"
+      }
+    },
+    {
+      "question": "Cache Miss Rate Alert",
+      "answer": "High cache miss rate detected",
+      "test": {
+        "q": "2024-03-20T10:18:00Z - WARN - Redis cache miss rate exceeds threshold (current: 75%, threshold: 50%)",
+        "a": "Cache warming needed after recent deployment"
+      }
+    },
+    {
+      "question": "API Rate Limit",
+      "answer": "Client exceeded rate limit",
+      "test": {
+        "q": "2024-03-20T10:19:00Z - WARN - Rate limit exceeded for client_id: client_789 (limit: 100/min)",
+        "a": "Client needs to implement better request throttling"
+      }
+    },
+    {
+      "question": "Memory Usage Alert",
+      "answer": "High memory usage on web server",
+      "test": {
+        "q": "2024-03-20T10:20:00Z - WARN - High memory usage on web-server-01 (usage: 85%, threshold: 80%)",
+        "a": "Memory leak suspected in recent deployment"
+      }
+    },
+    {
+      "question": "Slow Query Alert",
+      "answer": "Database query performance issue",
+      "test": {
+        "q": "2024-03-20T10:21:00Z - WARN - Slow query detected (duration: 5.2s): SELECT * FROM orders WHERE created_at > ?",
+        "a": "Missing index on created_at column"
+      }
+    },
+    {
+      "question": "CDN Error",
+      "answer": "Content delivery network error",
+      "test": {
+        "q": "2024-03-20T10:22:00Z - ERROR - CDN connection failed for asset: /images/products/large/*.jpg",
+        "a": "CDN provider experiencing regional outage"
+      }
+    },
+    {
+      "question": "Session Management",
+      "answer": "Invalid session token",
+      "test": {
+        "q": "2024-03-20T10:23:00Z - WARN - Invalid session token detected for user_id: user_456",
+        "a": "Possible session hijacking attempt"
+      }
+    },
+    {
+      "question": "API Integration Error",
+      "answer": "Third-party API failure",
+      "test": {
+        "q": "2024-03-20T10:24:00Z - ERROR - Shipping API returned 503 for order #12346",
+        "a": "Third-party shipping provider experiencing downtime"
+      }
+    },
+    {
+      "question": "Database Replication Lag",
+      "answer": "High replication lag detected",
+      "test": {
+        "q": "2024-03-20T10:25:00Z - WARN - Database replication lag exceeds threshold (current: 30s, max: 10s)",
+        "a": "Heavy write load causing replication delays"
+      }
+    },
+    {
+      "question": "SSL Certificate",
+      "answer": "SSL certificate expiration warning",
+      "test": {
+        "q": "2024-03-20T10:26:00Z - WARN - SSL certificate for domain.com expires in 7 days",
+        "a": "Certificate renewal required soon"
+      }
+    },
+    {
+      "question": "Disk Space Alert",
+      "answer": "Low disk space warning",
+      "test": {
+        "q": "2024-03-20T10:27:00Z - WARN - Low disk space on /var/log (85% used)",
+        "a": "Log rotation needed, old logs consuming space"
+      }
+    },
+    {
+      "question": "Queue Processing",
+      "answer": "Message queue backup",
+      "test": {
+        "q": "2024-03-20T10:28:00Z - WARN - RabbitMQ queue 'order_processing' has 1000+ messages",
+        "a": "Consumer service not keeping up with message rate"
+      }
+    },
+    {
+      "question": "Security Alert",
+      "answer": "Suspicious activity detected",
+      "test": {
+        "q": "2024-03-20T10:29:00Z - ERROR - Multiple 404 requests from IP 10.0.0.1 scanning admin paths",
+        "a": "Potential security scan detected, IP should be blocked"
       }
     }
   ]
