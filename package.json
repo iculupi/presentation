@@ -5,7 +5,8 @@
     "demo:all": "bun run exercises/ai_demos/runDemonstration.ts",
     "demo:code": "bun run exercises/ai_demos/runDemonstration.ts code-analysis",
     "demo:data": "bun run exercises/ai_demos/runDemonstration.ts data-processing",
-    "demo:gen": "bun run exercises/ai_demos/runDemonstration.ts code-generation"
+    "demo:gen": "bun run exercises/ai_demos/runDemonstration.ts code-generation",
+    "demo:json": "bun run exercises/ai_demos/runDemonstration.ts json-calibration"
   },
   "dependencies": {
     "openai": "^4.0.0"

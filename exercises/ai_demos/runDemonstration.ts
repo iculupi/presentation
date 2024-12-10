@@ -1,6 +1,7 @@
 import { CodeAnalysisDemo } from './demos/codeAnalysisDemo';
 import { DataProcessingDemo } from './demos/dataProcessingDemo';
 import { CodeGenerationDemo } from './demos/codeGenerationDemo';
+import { JsonCalibrationDemo } from './demos/jsonCalibrationDemo';
 
 /**
  * AI Development Demonstration Suite
@@ -67,10 +68,16 @@ export async function runCodeGeneration() {
     await runDemo('Code Generation', () => demo.run());
 }
 
+export async function runJsonCalibration() {
+    const demo = new JsonCalibrationDemo();
+    await runDemo('JSON Calibration', () => demo.run());
+}
+
 export async function runAllDemos() {
     await runCodeAnalysis();
     await runDataProcessing();
     await runCodeGeneration();
+    await runJsonCalibration();
 }
 
 // If file is run directly
@@ -86,6 +93,9 @@ if (require.main === module) {
             break;
         case 'code-generation':
             runCodeGeneration();
+            break;
+        case 'json-calibration':
+            runJsonCalibration();
             break;
         default:
             runAllDemos();
