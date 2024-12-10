@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  aidevs:
+    build: .
+    container_name: aidevs-r2d2
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=${NODE_ENV:-production}
+      - OPENAI_API_KEY
+      - PERSONAL_API_KEY
+      - FIRECRAWL_API_KEY
+      - LINEAR_API_KEY
+      - LANGFUSE_SECRET_KEY
+      - LANGFUSE_PUBLIC_KEY
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - aidevs-network
+
+networks:
+  aidevs-network:
+    driver: bridge 
