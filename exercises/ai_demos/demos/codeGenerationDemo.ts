@@ -11,6 +11,28 @@ interface GenerationResult {
     timestamp: string;
 }
 
+/**
+ * Code Generation Demo
+ * 
+ * This demo showcases AI's ability to generate and improve code:
+ * 1. Generates TypeScript interfaces from system descriptions
+ *    - Creates properly typed interfaces
+ *    - Includes JSDoc documentation
+ *    - Follows TypeScript best practices
+ * 
+ * 2. Generates unit tests
+ *    - Creates Jest test suites
+ *    - Covers edge cases
+ *    - Includes mocks and proper test setup
+ * 
+ * 3. Suggests code optimizations
+ *    - Performance improvements
+ *    - Memory usage optimization
+ *    - Security enhancements
+ * 
+ * Use Case: Speeds up development by automating boilerplate code creation
+ * and helping with test coverage.
+ */
 export class CodeGenerationDemo extends BaseDemo {
     constructor() {
         super('code-generation');

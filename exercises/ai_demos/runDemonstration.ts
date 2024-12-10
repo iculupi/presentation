@@ -2,6 +2,43 @@ import { CodeAnalysisDemo } from './demos/codeAnalysisDemo';
 import { DataProcessingDemo } from './demos/dataProcessingDemo';
 import { CodeGenerationDemo } from './demos/codeGenerationDemo';
 
+/**
+ * AI Development Demonstration Suite
+ * 
+ * This demonstration showcases three key aspects of AI in software development:
+ * 
+ * 1. Code Analysis (demo:code)
+ *    - AI-powered code review and improvement
+ *    - Detection of potential issues and anti-patterns
+ *    - Generation of improved code with proper typing and security
+ * 
+ * 2. Data Processing (demo:data)
+ *    - Processing and analysis of large JSON datasets
+ *    - Splitting data into manageable chunks
+ *    - Pattern detection and anomaly identification
+ * 
+ * 3. Code Generation (demo:gen)
+ *    - Automatic generation of TypeScript interfaces
+ *    - Creation of unit tests with edge cases
+ *    - Performance optimization suggestions
+ * 
+ * Each demo generates output files in its respective directory:
+ * - /outputs/code-analysis/
+ * - /outputs/data-processing/
+ * - /outputs/code-generation/
+ * 
+ * Usage:
+ * ```bash
+ * # Run all demos
+ * bun run demo:all
+ * 
+ * # Run individual demos
+ * bun run demo:code    # Code Analysis
+ * bun run demo:data    # Data Processing
+ * bun run demo:gen     # Code Generation
+ * ```
+ */
+
 async function runDemo(name: string, demo: () => Promise<void>) {
     console.log(`\n🎯 Running demo: ${name}`);
     console.log('='.repeat(50));

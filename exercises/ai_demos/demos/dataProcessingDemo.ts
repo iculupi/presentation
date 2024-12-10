@@ -4,6 +4,21 @@ import type { JsonData } from '../../../utils/types';
 import fs from 'fs/promises';
 import path from 'path';
 
+/**
+ * Data Processing Demo
+ * 
+ * This demo demonstrates AI capabilities in processing large datasets:
+ * 1. Processes large JSON data files by splitting them into manageable chunks
+ * 2. Analyzes each chunk for:
+ *    - Log anomalies
+ *    - Error patterns
+ *    - Time-based events
+ *    - System optimization opportunities
+ * 3. Generates analysis reports and statistics
+ * 
+ * Use Case: Helps analyze large log files, detect patterns, and identify 
+ * potential system issues automatically.
+ */
 export class DataProcessingDemo extends BaseDemo {
     constructor() {
         super('data-processing');

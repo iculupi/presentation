@@ -4,6 +4,21 @@ import { SystemPrompts } from '../../../utils/prompts/systemPrompts';
 import fs from 'fs/promises';
 import path from 'path';
 
+/**
+ * Code Analysis Demo
+ * 
+ * This demo shows how AI can help with code review and improvement:
+ * 1. Analyzes existing TypeScript code for potential issues
+ * 2. Identifies problems with types, security, and best practices
+ * 3. Generates improved version of the code with proper:
+ *    - TypeScript interfaces and types
+ *    - Error handling
+ *    - Security improvements
+ *    - Best practices implementation
+ * 
+ * Use Case: Helps developers improve code quality and catch potential issues
+ * during code review process.
+ */
 export class CodeAnalysisDemo extends BaseDemo {
     constructor() {
         super('code-analysis');
