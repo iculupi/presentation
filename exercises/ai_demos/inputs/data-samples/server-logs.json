@@ -1,0 +1,31 @@
+{
+  "apikey": "demo_key",
+  "description": "Server logs from e-commerce application",
+  "copyright": "Demo 2024",
+  "test-data": [
+    {
+      "question": "Server Error",
+      "answer": "Database connection timeout",
+      "test": {
+        "q": "2024-03-20T10:15:00Z - ERROR - Database connection failed after 30s",
+        "a": "Connection timeout during peak hours"
+      }
+    },
+    {
+      "question": "Authentication Failure",
+      "answer": "Invalid credentials",
+      "test": {
+        "q": "2024-03-20T10:16:00Z - WARN - Failed login attempt from IP 192.168.1.100",
+        "a": "Multiple failed attempts detected"
+      }
+    },
+    {
+      "question": "Order Processing",
+      "answer": "Payment verification failed",
+      "test": {
+        "q": "2024-03-20T10:17:00Z - ERROR - Payment gateway timeout for order #12345",
+        "a": "Transaction rollback initiated"
+      }
+    }
+  ]
+} 

@@ -9,7 +9,7 @@ export class JsonSplitter {
 
     constructor(taskNumber: string, chunkSize: number = 100) {
         this.chunkSize = chunkSize;
-        this.taskDir = path.join(process.cwd(), 'exercises', taskNumber);
+        this.taskDir = path.join(process.cwd(), 'exercises', 'ai_demos', 'outputs', taskNumber);
         this.chunksDir = path.join(this.taskDir, 'chunks');
     }
 
@@ -57,10 +57,12 @@ export class JsonSplitter {
             chunks.push(jsonData['test-data'].slice(i, i + this.chunkSize));
         }
 
-        // Zapisz chunki
+        // Zapisz chunki i zbierz względne ścieżki
         const chunkPaths: string[] = [];
         for (let i = 0; i < chunks.length; i++) {
-            const chunkPath = path.join(this.chunksDir, `chunk_${i + 1}.json`);
+            const chunkPath = path.join('chunks', `chunk_${i + 1}.json`);
+            const fullChunkPath = path.join(this.taskDir, chunkPath);
+            
             const chunkData = {
                 ...jsonData,
                 'test-data': chunks[i],
@@ -74,9 +76,11 @@ export class JsonSplitter {
                     }
                 }
             };
-            await fs.writeFile(chunkPath, JSON.stringify(chunkData, null, 2));
+            
+            await fs.writeFile(fullChunkPath, JSON.stringify(chunkData, null, 2));
+            // Dodaj względną ścieżkę do listy
             chunkPaths.push(chunkPath);
-            console.log(`📁 Chunk ${i + 1}/${chunks.length} saved to:`, chunkPath);
+            console.log(`📁 Chunk ${i + 1}/${chunks.length} saved`);
         }
 
         // Zapisz metadane
@@ -91,7 +95,7 @@ export class JsonSplitter {
             copyright: jsonData.copyright
         };
         await fs.writeFile(metaPath, JSON.stringify(metadata, null, 2));
-        console.log('📊 Metadata saved to:', metaPath);
+        console.log('📊 Metadata saved');
 
         return chunkPaths;
     }

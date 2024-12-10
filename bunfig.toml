@@ -1,0 +1,12 @@
+[build]
+entrypoints = ["exercises/ai_demos/runDemonstration.ts"]
+outdir = "dist"
+
+[test]
+coverage = true
+
+[install]
+exact = true
+
+[install.typescript]
+types = true 

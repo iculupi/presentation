@@ -1,0 +1,9 @@
+{
+  "name": "ai-demos",
+  "scripts": {
+    "demo:all": "bun run runDemonstration.ts",
+    "demo:code": "bun run runDemonstration.ts code-analysis",
+    "demo:data": "bun run runDemonstration.ts data-processing",
+    "demo:gen": "bun run runDemonstration.ts code-generation"
+  }
+} 
